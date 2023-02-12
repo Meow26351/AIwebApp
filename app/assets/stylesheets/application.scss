@@ -1,10 +1,11 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * This is a manifest file that'll be compiled into application.scss, which will include all the files
  * listed below.
  *
  * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
  * vendor/assets/stylesheets directory can be referenced here using a relative path.
  *
+
  * You're free to add application-wide styles to this file and they'll appear at the bottom of the
  * compiled file so the styles you add here take precedence over styles defined in any other CSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
@@ -13,3 +14,31 @@
  *= require_tree .
  *= require_self
  */
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.grid-item {
+  background-color: lightgray;
+  border: 1px solid black;
+  text-align: center;
+}
+
+
+.form-style {
+  text-align: center;
+  max-width: 400px;
+  margin: 0 auto;
+  outline-color: black;
+}
+
+.bg-image {
+  background-image: image_url('assets/image1.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+}
+

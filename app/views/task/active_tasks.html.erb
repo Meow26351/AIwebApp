@@ -1,0 +1,6 @@
+<h1 style="text-align: center">Here are your Active Tasks</h1>
+
+<% @task.images.each do |image| %>
+  <%= image_tag image.variant(:thumb) %>
+  <p>&nbsp;&nbsp;</p>
+<% end %>
