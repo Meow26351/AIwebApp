@@ -2,5 +2,13 @@
 
 <% @task.images.each do |image| %>
   <%= image_tag image.variant(:thumb) %>
-  <p>&nbsp;&nbsp;</p>
+  <br/>
+  <div>
+  <p>Is the Image labeled correctly?<br/></p>
+  <%= image.label %>
+  <%= image.confidence %>
+  </div>
 <% end %>
+
+<%= @label %>
+<%= @confidence %>

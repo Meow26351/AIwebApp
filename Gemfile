@@ -23,6 +23,8 @@ gem "aws-sdk-s3", require: false
 gem 'activestorage'
 gem "image_processing", ">= 1.2"
 gem 'sass-rails'
+gem 'activeadmin'
+
 
 gem 'jquery-rails'
 gem 'uglifier', '>= 1.3.0'
