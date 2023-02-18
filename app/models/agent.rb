@@ -4,6 +4,6 @@ class Agent < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, :confirmable
 
-  has_many :tasks
+  has_many_attached :tasks
 
 end

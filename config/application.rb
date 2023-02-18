@@ -12,6 +12,8 @@ module Aiweb
     config.load_defaults 7.0
     config.active_storage.service = :amazon
     config.assets.enabled = true
+    config.active_job.queue_adapter = :delayed_job
+    config.net_http_read_timeout = 30
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

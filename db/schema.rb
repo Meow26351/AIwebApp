@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_14_011316) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_17_062709) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -32,6 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_011316) do
     t.datetime "created_at", null: false
     t.float "confidence"
     t.string "label"
+    t.boolean "assigned", default: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -49,23 +50,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_14_011316) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "tasks_id"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.index ["confirmation_token"], name: "index_agents_on_confirmation_token", unique: true
     t.index ["email"], name: "index_agents_on_email", unique: true
     t.index ["reset_password_token"], name: "index_agents_on_reset_password_token", unique: true
-    t.index ["tasks_id"], name: "index_agents_on_tasks_id"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "agent_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "agents", "tasks", column: "tasks_id"
 end

@@ -2,11 +2,16 @@ require 'aws-sdk-s3'
 require "google/cloud/vision"
 class TaskController < ApplicationController
   def active_tasks
-    agent = current_agent
-    @task = Task.new
-    @task.images.attach(retrieve_images)
-    # blob = ActiveStorage::Blob.find(470)
-    # @url = rails_blob_url(blob)
+    all_agents = Agent.all
+    retrieve_images
+    all_agents.each do |agent|
+      while agent.tasks.length < 3
+        random_image = ActiveStorage::Blob.where(assigned: false).sample(1).first
+        random_image.update(assigned: true)
+        agent.tasks.attach(random_image)
+      end
+    end
+    @current_agent_tasks = current_agent
   end
 
   def retrieve_images
@@ -32,7 +37,7 @@ class TaskController < ApplicationController
                 blob.update(confidence: confidence, label: label)
                 blobs << blob
               else
-                existing_blob.update(confidence: confidence)
+                existing_blob.update(confidence: confidence, label: label)
                 blobs << existing_blob
               end
             end
@@ -40,7 +45,7 @@ class TaskController < ApplicationController
         end
       end
     end
-      return blobs.sample(1)
+      return blobs
   end
 
   def tasks

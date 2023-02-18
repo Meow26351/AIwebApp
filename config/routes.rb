@@ -7,7 +7,5 @@ Rails.application.routes.draw do
   get 'task/tasks'
   get 'task/active_tasks'
   get 'task/finished_tasks'
-  get 'home/upload_image', to: 'home#create'
   post 'task', to: 'task#active_tasks'
-  post 'home/upload_image', to: 'home#create'
 end

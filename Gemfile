@@ -8,7 +8,7 @@ gem "sqlite3", "~> 1.4"
 gem "puma", "~> 5.0"
 gem "importmap-rails"
 gem "turbo-rails"
-gem "stimulus-rails"
+#gem "stimulus-rails"
 gem "jbuilder"
 gem "tzinfo-data"
 gem "devise"
@@ -16,14 +16,16 @@ gem 'google-cloud-vision'
 gem 'google-cloud-vision-v1'
 gem 'google-cloud-core'
 # gem 'esbuild'
-gem 'minitest', "~> 5.17.0"
+#gem 'minitest', "~> 5.17.0"
 gem 'standard', "~> 1.0.4"
 gem "bootsnap", require: false
 gem "aws-sdk-s3", require: false
 gem 'activestorage'
 gem "image_processing", ">= 1.2"
 gem 'sass-rails'
-gem 'activeadmin'
+gem 'delayed_job', '~> 4.1.9'
+gem 'delayed_job_active_record'
+
 
 
 gem 'jquery-rails'
@@ -54,6 +56,6 @@ end
 
 group :test do
   gem "capybara"
-  gem "selenium-webdriver"
+  #gem "selenium-webdriver"
   gem "webdrivers"
 end

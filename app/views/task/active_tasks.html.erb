@@ -1,7 +1,7 @@
 <h1 style="text-align: center">Here are your Active Tasks</h1>
 
-<% @task.images.each do |image| %>
-  <%= image_tag image.variant(:thumb) %>
+<% @current_agent_tasks.tasks.each do |image| %>
+  <%= image_tag image, style: "width: 400px; height: 400px" %>
   <br/>
   <div>
   <p>Is the Image labeled correctly?<br/></p>
