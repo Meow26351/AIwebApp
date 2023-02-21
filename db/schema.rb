@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_17_062709) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_20_030213) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_17_062709) do
     t.float "confidence"
     t.string "label"
     t.boolean "assigned", default: false
+    t.boolean "labeled_correctly"
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 

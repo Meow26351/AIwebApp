@@ -1,5 +1,6 @@
 :scheduler:
   :schedule:
-    hello_world:
-      cron: '0 * * * * *'   # Runs once per minute
-      class: HelloWorld
+    assign_tasks_job:
+      every: 10m
+      #cron: '0 * * * * *'   # Runs once per minute
+      class: AssignTasksJob

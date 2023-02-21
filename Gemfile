@@ -23,8 +23,10 @@ gem "aws-sdk-s3", require: false
 gem 'activestorage'
 gem "image_processing", ">= 1.2"
 gem 'sass-rails'
-gem 'delayed_job', '~> 4.1.9'
-gem 'delayed_job_active_record'
+gem 'activejob'
+gem 'redis', "~> 5.0"
+gem 'sidekiq', "~>6.1.0"
+gem 'sidekiq-scheduler'
 
 
 

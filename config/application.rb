@@ -12,7 +12,9 @@ module Aiweb
     config.load_defaults 7.0
     config.active_storage.service = :amazon
     config.assets.enabled = true
-    config.active_job.queue_adapter = :delayed_job
+    config.active_job.queue_adapter = :sidekiq
+    config.redis_url = 'redis://localhost:6379/0'
+    config.autoload_paths += %W(#{config.root}/app/jobs)
     config.net_http_read_timeout = 30
     # Configuration for the application, engines, and railties goes here.
     #
