@@ -1,6 +1,6 @@
 :scheduler:
   :schedule:
     assign_tasks_job:
-      every: 10m
+      every: 2m
       #cron: '0 * * * * *'   # Runs once per minute
       class: AssignTasksJob

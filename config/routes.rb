@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :agents
   #home
   root 'home#index'
-  get 'home/duties'
+  get 'home/profile'
+  patch 'home/id:/profile', to: 'home#profile', as: 'profile'
+  get 'home/agents_work'
+  get 'home/analysis'
+  get 'home/show_agent/:id', to: 'home#show_agent', as: 'show_agent'
   #tasks
   get 'task/tasks'
   get 'task/active_tasks'

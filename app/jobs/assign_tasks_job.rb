@@ -6,18 +6,21 @@ class AssignTasksJob < ApplicationJob
     all_agents = Agent.all
     retrieve_images
     all_agents.each do |agent|
-      while agent.tasks.length < 4
-        if ActiveStorage::Blob.where(assigned: false).exists?
-          random_image = ActiveStorage::Blob.where(assigned: false).sample(1).first
-          random_image.update(assigned: true)
-          agent.tasks.attach(random_image)
-        else
-          break
+      count = 0
+      if agent.admin == false
+        while count < 3 && agent.tasks.length < 5
+          if ActiveStorage::Blob.where(assigned: false).exists?
+            random_image = ActiveStorage::Blob.where(assigned: false).sample(1).first
+            random_image.update(assigned: true)
+            agent.tasks.attach(random_image)
+          else
+            break
+          end
+          count = count + 1
         end
       end
     end
   end
-
 
   private
 
@@ -35,15 +38,17 @@ class AssignTasksJob < ApplicationJob
           res.label_annotations.each do |characteristics|
             label = characteristics.description
             confidence = characteristics.topicality
-            if confidence < 0.95
+            if confidence < 0.97
               head_object = s3.head_object(bucket: bucket_name, key: obj.key)
               content_type = head_object.content_type
               existing_blob = ActiveStorage::Blob.find_by(filename: obj.key.split("/").last)
               if existing_blob.nil?
                 blob = ActiveStorage::Blob.create_and_upload!(io: s3.get_object(bucket: bucket_name, key: obj.key).body, filename: obj.key.split("/").last, content_type: content_type)
+                Analysis.create(confidence: confidence, label: label, blob_id: blob.id)
                 blob.update(confidence: confidence, label: label)
                 blobs << blob
               else
+                Analysis.create(confidence: confidence, label: label, blob_id: existing_blob)
                 existing_blob.update(confidence: confidence, label: label)
                 blobs << existing_blob
               end

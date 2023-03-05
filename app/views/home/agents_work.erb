@@ -1,0 +1,9 @@
+<div>
+  <% @agents.each do |agent| %>
+    <% if agent.admin == false %>
+      <div>
+        <%=link_to agent.email, show_agent_path(agent)%>
+      </div>
+    <%end %>
+  <% end %>
+</div>

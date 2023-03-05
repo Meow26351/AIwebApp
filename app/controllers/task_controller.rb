@@ -7,7 +7,6 @@ class TaskController < ApplicationController
   def label_correct
     agent = current_agent
     image = agent.tasks.find(params[:id])
-    puts image
     image.update(labeled_correctly: true)
     redirect_to root_path
   end
@@ -15,7 +14,6 @@ class TaskController < ApplicationController
   def label_incorrect
     agent = current_agent
     image = agent.tasks.find(params[:id])
-    puts image
     image.update(labeled_correctly: false)
     redirect_to root_path
   end

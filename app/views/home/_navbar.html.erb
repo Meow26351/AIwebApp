@@ -7,9 +7,16 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <% if agent_signed_in? %>
-          <%=link_to 'Edit profile', edit_agent_registration_path, :class => 'nav-link active' %>
-          <%=link_to 'Tasks', task_tasks_path, :class => 'nav-link active'%>
-          <%=link_to 'Logout', destroy_agent_session_path, :class => 'nav-link active' %>
+          <% if current_agent.admin == false %>
+            <%=link_to 'Edit profile', edit_agent_registration_path, :class => 'nav-link active' %>
+            <%=link_to 'Tasks', task_tasks_path, :class => 'nav-link active'%>
+            <%=link_to 'Logout', destroy_agent_session_path, :class => 'nav-link active' %>
+            <%=link_to 'Profile', home_profile_path, :class => 'nav-link active' %>
+          <% else %>
+              <%=link_to 'Agents work', home_agents_work_path, :class => 'nav-link active' %>
+              <%=link_to 'Analysis', home_analysis_path, :class => 'nav-link active' %>
+              <%=link_to 'Logout', destroy_agent_session_path, :class => 'nav-link active' %>
+          <% end %>
         <% else %>
           <%=link_to 'Log in', new_agent_session_path, :class => 'nav-link active' %>
           <%=link_to 'Sign up', new_agent_registration_path, :class => 'nav-link active' %>
