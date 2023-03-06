@@ -1,6 +1,6 @@
 <h1 style="text-align: center">Here are your Active Tasks</h1>
 
-<% @current_agent_tasks.tasks.each do |image| %>
+<% @current_agent_tasks.each do |image| %>
   <% if image.labeled_correctly.nil? %>
     <%= image_tag image, :class => "image" %>
     <br/>

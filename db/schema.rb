@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_05_002252) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_05_233721) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -68,10 +68,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_05_002252) do
     t.boolean "assigned", default: false
     t.boolean "correct_label"
     t.datetime "time_of_labeling"
-    t.integer "blob_id"
+    t.integer "blob_id", null: false
+    t.integer "agents_id"
+    t.index ["agents_id"], name: "index_analyses_on_agents_id"
+    t.index ["blob_id"], name: "index_analyses_on_blob_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "analyses", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "analyses", "agents", column: "agents_id"
 end

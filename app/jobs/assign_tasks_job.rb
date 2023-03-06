@@ -9,10 +9,11 @@ class AssignTasksJob < ApplicationJob
       count = 0
       if agent.admin == false
         while count < 3 && agent.tasks.length < 5
-          if ActiveStorage::Blob.where(assigned: false).exists?
-            random_image = ActiveStorage::Blob.where(assigned: false).sample(1).first
-            random_image.update(assigned: true)
-            agent.tasks.attach(random_image)
+          if Analysis.where(assigned: false).exists?
+            get_random_unassigned_image = Analysis.where(assigned: false).sample(1).first
+            image = ActiveStorage::Blob.find(get_random_unassigned_image.blob_id)
+            agent.tasks.attach(image)
+            get_random_unassigned_image.update(agents_id: agent.id, assigned: true)
           else
             break
           end
@@ -45,12 +46,12 @@ class AssignTasksJob < ApplicationJob
               if existing_blob.nil?
                 blob = ActiveStorage::Blob.create_and_upload!(io: s3.get_object(bucket: bucket_name, key: obj.key).body, filename: obj.key.split("/").last, content_type: content_type)
                 Analysis.create(confidence: confidence, label: label, blob_id: blob.id)
-                blob.update(confidence: confidence, label: label)
                 blobs << blob
               else
-                Analysis.create(confidence: confidence, label: label, blob_id: existing_blob)
-                existing_blob.update(confidence: confidence, label: label)
-                blobs << existing_blob
+                #towa ne ti trqbwa sloji edin break
+                #Analysis.create(confidence: confidence, label: label, blob_id: existing_blob.id)
+                #blobs << existing_blob
+                break
               end
             end
           end
