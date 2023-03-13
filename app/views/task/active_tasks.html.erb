@@ -1,7 +1,6 @@
 <h1 style="text-align: center">Here are your Active Tasks</h1>
 
 <% @current_agent_tasks.each do |image| %>
-  <% if image.labeled_correctly.nil? %>
     <%= image_tag image, :class => "image" %>
     <br/>
     <div>
@@ -11,5 +10,4 @@
       <%= button_to "YES", label_correct_path(image.id), method: :patch %>
       <%= button_to "NO", label_incorrect_path(image.id), method: :patch %>
     </div>
-    <%end%>
 <% end %>

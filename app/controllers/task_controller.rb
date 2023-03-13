@@ -3,12 +3,12 @@ require "google/cloud/vision"
 class TaskController < ApplicationController
   def active_tasks
     agent = current_agent
+    images = Analysis.where(agents_id: current_agent.id, correct_label: nil)
     @current_agent_tasks = []
-    agent.tasks_blobs.each do |blob|
-      if Analysis.where(blob_id: blob, correct_label: nil)
-        @current_agent_tasks << agent.tasks.find_by(blob_id: blob)
-      end
+    images.each do |analysis|
+      @current_agent_tasks += agent.tasks.where(blob_id: analysis.blob_id)
     end
+
   end
   def label_correct
     agent = current_agent
@@ -25,6 +25,12 @@ class TaskController < ApplicationController
   end
 
   def finished_tasks
-    @current_agent_tasks = current_agent
+    agent = current_agent
+    images = Analysis.where(agents_id: current_agent.id).where.not(correct_label: nil)
+    @current_agent_tasks = []
+    images.each do |analysis|
+      @current_agent_tasks += agent.tasks.where(blob_id: analysis.blob_id)
+    end
+
   end
 end

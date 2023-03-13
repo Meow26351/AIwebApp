@@ -15,7 +15,7 @@ gem "devise"
 gem 'google-cloud-vision'
 gem 'google-cloud-vision-v1'
 gem 'google-cloud-core'
-# gem 'esbuild'
+#gem 'esbuild'
 #gem 'minitest', "~> 5.17.0"
 gem 'standard', "~> 1.0.4"
 gem "bootsnap", require: false
@@ -27,7 +27,7 @@ gem 'activejob'
 gem 'redis', "~> 5.0"
 gem 'sidekiq', "~>6.1.0"
 gem 'sidekiq-scheduler'
-gem 'activeadmin'
+gem 'chart-js-rails'
 
 
 
@@ -62,3 +62,5 @@ group :test do
   #gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "jsbundling-rails", "~> 1.1"

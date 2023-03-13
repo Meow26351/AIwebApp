@@ -1,8 +1,5 @@
 <h1><strong>Here are your finished tasks </strong></h1>
 
-<% @current_agent_tasks.tasks.each do |image| %>
-  <% if image.labeled_correctly != nil %>
+<% @current_agent_tasks.each do |image| %>
     <%= image_tag image, :class => "image" %>
-    <br/>
-  <%end%>
 <% end %>
