@@ -28,6 +28,7 @@ gem 'redis', "~> 5.0"
 gem 'sidekiq', "~>6.1.0"
 gem 'sidekiq-scheduler'
 gem 'chart-js-rails'
+gem 'gon'
 
 
 
