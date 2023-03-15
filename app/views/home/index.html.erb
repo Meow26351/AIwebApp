@@ -1,3 +1,4 @@
+
 <p class="navbar-text float-right">
   <% if agent_signed_in? %>
       Logged in as <strong><%= current_agent.email %></strong>.
@@ -5,7 +6,11 @@
   <br/>
 </p>
 
-<div>
+<div class="position-relative">
+  <div class="position-absolut top-50 start-50 font-monospace">
+    Welcome to ImageRating
+  </div>
+
   <div>
     <%= image_tag("image/image2.jpg", class: "circle circle-1") %>
     <br/>
@@ -14,7 +19,8 @@
   </div>
 </div>
 
-<div>
 
-</div>
+
+
+
 

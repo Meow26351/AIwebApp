@@ -1,0 +1,17 @@
+
+<div>
+  <canvas id="Chart1" style="width: 50%; height: 50%; margin-bottom: 200px"></canvas>
+  <%= javascript_include_tag('chart1.js') %>
+</div>
+
+<div>
+  <canvas id="Chart2" style="width: 50%; height: 50%; margin-bottom: 200px"></canvas>
+  <%= javascript_include_tag('chart2.js') %>
+</div>
+
+<div>
+  <h1>Image Recognition Accuracy: <%= number_with_precision(@accuracy_percentage, precision: 2) %>%</h1>
+</div>
+
+
+

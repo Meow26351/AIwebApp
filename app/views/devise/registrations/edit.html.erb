@@ -31,10 +31,10 @@
   </div>
 
   <div class="actions" style="text-align: center">
-    <%= f.submit "Update" %>
+    <%= f.submit "Update", :class=>"btn btn-primary" %>
   </div>
 <% end %>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, :class=>"btn btn-primary", method: :delete %></p>
 
 <%= link_to "Back", :back %>

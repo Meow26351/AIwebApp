@@ -11,10 +11,9 @@
             <%=link_to 'Edit profile', edit_agent_registration_path, :class => 'nav-link active' %>
             <%=link_to 'Tasks', task_tasks_path, :class => 'nav-link active'%>
             <%=link_to 'Logout', destroy_agent_session_path, :class => 'nav-link active' %>
-            <%=link_to 'Profile', home_profile_path, :class => 'nav-link active' %>
           <% else %>
-              <%=link_to 'Agents work', home_agents_work_path, :class => 'nav-link active' %>
-              <%=link_to 'Analysis', home_analysis_path, :class => 'nav-link active' %>
+              <%=link_to 'Agents work', admin_agents_work_path, :class => 'nav-link active' %>
+              <%=link_to 'Analysis', admin_analysis_path, :class => 'nav-link active' %>
               <%=link_to 'Logout', destroy_agent_session_path, :class => 'nav-link active' %>
           <% end %>
         <% else %>

@@ -1,13 +1,16 @@
-<h1 style="text-align: center">Here are your Active Tasks</h1>
+<h1 class="font-monospace text-center">Here are your Active Tasks</h1>
 
-<% @current_agent_tasks.each do |image| %>
-    <%= image_tag image, :class => "image" %>
+<% @current_agent_tasks.each do |task| %>
+  <% task[:image].each do |image| %>
+    <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
     <br/>
-    <div>
+    <div class="ms-1">
       <p>Is the Image labeled correctly?<br/></p>
-      <%= image.label %>
-      <%= image.confidence %>
-      <%= button_to "YES", label_correct_path(image.id), method: :patch %>
-      <%= button_to "NO", label_incorrect_path(image.id), method: :patch %>
+      <p>Label: <%= task[:label] %></p>
+      <div class="d-flex p-2">
+          <%= button_to "YES", label_correct_path(image.id), :class=> "btn btn-primary", method: :patch %>
+          <%= button_to "NO", label_incorrect_path(image.id),:class=> "btn btn-primary", method: :patch %>
+      </div>
     </div>
+  <% end %>
 <% end %>
