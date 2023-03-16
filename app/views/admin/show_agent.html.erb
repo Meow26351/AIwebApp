@@ -1,5 +1,12 @@
-<div>
-  <% @show_agents_tasks.each do |tasks| %>
-      <%= image_tag tasks, :class => 'image' %>
-  <% end %>
-</div>
+
+
+<% @show_agent_tasks.each do |task| %>
+  <% image = task[:image] %>
+  <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
+  <br/>
+  <div class="ms-1">
+    <p>Image label<br/></p>
+    <p>Label: <%= task[:label] %></p>
+    <p>Given Answer: <%= task[:answer] %></p>
+  </div>
+<% end %>

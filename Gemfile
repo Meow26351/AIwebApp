@@ -29,6 +29,7 @@ gem 'sidekiq', "~>6.1.0"
 gem 'sidekiq-scheduler'
 gem 'chart-js-rails'
 gem 'gon'
+#gem 'dotenv-rails', groups: [:development, :test]
 
 
 

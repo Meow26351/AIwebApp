@@ -8,7 +8,11 @@ class AssignTasksJob < ApplicationJob
     all_agents.each do |agent|
       count = 0
       if agent.admin == false
-        while count < 3 && agent.tasks.length < 5
+        while true
+          if count >= 3 || agent.tasks.length >= 5
+            break
+          end
+
           if Analysis.where(assigned: false).exists?
             get_random_unassigned_image = Analysis.where(assigned: false).sample(1).first
             image = ActiveStorage::Blob.find(get_random_unassigned_image.blob_id)
@@ -27,10 +31,9 @@ class AssignTasksJob < ApplicationJob
 
   def retrieve_images
     s3 = Aws::S3::Client.new
+    image_annotator = Google::Cloud::Vision.image_annotator
     bucket_name = 'amazonrails'
     objects = s3.list_objects(bucket: bucket_name).contents
-    image_annotator = Google::Cloud::Vision.image_annotator
-    blobs = []
     objects.each do |obj|
       image_path = "https://amazonrails.s3.eu-central-1.amazonaws.com/#{obj.key}"
       if obj.key.end_with?('.jpg','.png','.jpeg')
@@ -46,11 +49,7 @@ class AssignTasksJob < ApplicationJob
               if existing_blob.nil?
                 blob = ActiveStorage::Blob.create_and_upload!(io: s3.get_object(bucket: bucket_name, key: obj.key).body, filename: obj.key.split("/").last, content_type: content_type)
                 Analysis.create(confidence: confidence, label: label, blob_id: blob.id)
-                blobs << blob
               else
-                #towa ne ti trqbwa sloji edin break
-                #Analysis.create(confidence: confidence, label: label, blob_id: existing_blob.id)
-                #blobs << existing_blob
                 break
               end
             end
@@ -58,6 +57,5 @@ class AssignTasksJob < ApplicationJob
         end
       end
     end
-    return blobs
   end
 end

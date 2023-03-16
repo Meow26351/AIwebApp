@@ -1,7 +1,14 @@
 class AdminController < ApplicationController
   def show_agent
     agent = Agent.find(params[:id])
-    @show_agents_tasks = agent.tasks
+    images = Analysis.where(agents_id: agent.id).where.not(correct_label: nil)
+    @show_agent_tasks = []
+    images.each do |analysis|
+      image = agent.tasks.where(blob_id: analysis.blob_id).first
+      label = analysis.label
+      given_answer = analysis.correct_label
+      @show_agent_tasks << { image: image, label: label, answer: given_answer}
+    end
   end
   def agents_work
     @agents = Agent.all
@@ -38,12 +45,7 @@ class AdminController < ApplicationController
   end
 
   def get_chart2_yvalues
-    y_values = []
     all_agents = Agent.all.where(admin: false )
-    all_agents.each do |agent|
-      y_values << Analysis.where(agents_id: agent.id).where.not(correct_label: nil).count
-    end
-
     work_data_by_agent = {}
     all_agents.each do |agent|
       months = [0,0,0,0,0,0,0,0,0,0,0,0]

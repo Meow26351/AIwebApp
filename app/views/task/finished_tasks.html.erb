@@ -1,13 +1,13 @@
 <h1 class="font-monospace text-center"><strong>Here are your finished tasks </strong></h1>
 
+
 <% @current_agent_tasks.each do |task| %>
-  <% task[:image].each do |image| %>
-    <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
-    <br/>
-    <div>
-      <p>Image Label<br/></p>
-      <p>Label: <%= task[:label] %></p>
-      <p>Given Answer: <%= task[:answer] %></p>
-    </div>
-  <% end %>
+  <% image = task[:image] %>
+  <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
+  <br/>
+  <div class="ms-1">
+    <p>Image label<br/></p>
+    <p>Label: <%= task[:label] %></p>
+    <p>Given Answer: <%= task[:answer] %></p>
+  </div>
 <% end %>

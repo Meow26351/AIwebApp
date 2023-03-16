@@ -1,8 +1,7 @@
-var xValues =  ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var xValues =  ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
 var users = [];
-
 var colors = ["red", "green","blue","orange","brown"];
-
 var index = 0;
 for (const email in gon.chart2_values) {
     users.push({
@@ -12,7 +11,6 @@ for (const email in gon.chart2_values) {
     });
     index++;
 }
-
 new Chart("Chart2", {
     type: "line",
     data: {
