@@ -1,9 +1,14 @@
 <h1 style="text-align: center">Tasks</h1>
 
 <div class="d-flex p-2">
-  <%=link_to "Active task", task_active_tasks_path, :class => 'nav-link active btn btn-primary' %>
-  <%=link_to "Finished task", task_finished_tasks_path, :class => 'nav-link active btn btn-primary' %>
+  <div>
+    <%=link_to "Active task", task_active_tasks_path, :class => 'btn btn-dark' %>
+  </div>
+  <div>
+    <%=link_to "Finished task", task_finished_tasks_path, :class => 'btn btn-dark' %>
+  </div>
 </div>
+
 
 
 

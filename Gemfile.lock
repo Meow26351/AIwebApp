@@ -1754,6 +1754,8 @@ GEM
     standard (1.0.4)
       rubocop (= 1.11.0)
       rubocop-performance (= 1.10.1)
+    tailwindcss-rails (2.0.29-x64-mingw-ucrt)
+      railties (>= 6.0.0)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.1)
@@ -1831,6 +1833,7 @@ DEPENDENCIES
   sprockets-rails
   sqlite3 (~> 1.4)
   standard (~> 1.0.4)
+  tailwindcss-rails (~> 2.0)
   turbo-rails
   tzinfo-data
   uglifier (>= 1.3.0)

@@ -6,4 +6,5 @@ class Agent < ApplicationRecord
 
   has_many_attached :tasks
 
+
 end

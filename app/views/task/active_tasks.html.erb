@@ -1,17 +1,16 @@
 <h1 class="font-monospace text-center">Here are your Active Tasks</h1>
 
-<div>
+<div style="display: flex; flex-wrap: wrap;">
   <% @current_agent_tasks.each do |task| %>
-      <% image = task[:image] %>
-      <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
-      <br/>
+    <div class ="col-4 p-3 d-flex flex-column justify-content-center align-items-center">
+      <%= image_tag url_for(task), class: "image border border-4 ms-1 border border-dark" %>
       <div class="ms-1">
-        <p>Is the Image labeled correctly?<br/></p>
-        <p>Label: <%= task[:label] %></p>
-        <div class="d-flex p-2">
-            <%= button_to "YES", label_correct_path(image.id), :class=> "btn btn-primary", method: :patch %>
-            <%= button_to "NO", label_incorrect_path(image.id),:class=> "btn btn-primary", method: :patch %>
+        <div>
+          <%= link_to "rate this image", image_page_path(id: task.id), class: "btn btn-dark", method: :get %>
         </div>
       </div>
+    </div>
   <% end %>
 </div>
+
+

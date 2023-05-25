@@ -1,5 +1,5 @@
 :scheduler:
   :schedule:
     assign_tasks_job:
-      every: 3h
+      every: 2m
       class: AssignTasksJob

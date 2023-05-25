@@ -6,8 +6,8 @@ Rails.application.configure do
   config.action_mailer.smtp_settings = {
     address: 'smtp-relay.sendinblue.com',
     port: 587,
-    user_name: 'tomi26351@gmail.com',
-    password: 'k0ETG3thSy1rH6IF',
+    user_name: 'le1980m@gmail.com',
+    password: 'GDPvqRE5HQC1pUBx',
     authentication: 'plain',
     # :ssl => true,
     # :tsl => true,

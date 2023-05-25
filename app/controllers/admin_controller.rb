@@ -31,13 +31,13 @@ class AdminController < ApplicationController
   private
 
   def get_chart1_xvalues
-    x_values = Agent.all.where(admin: false).pluck(:email)
+    x_values = Agent.all.where(admin: false).where.not(confirmed_at: nil).pluck(:email)
     x_values
   end
 
   def get_chart1_yvalues
     y_values = []
-    all_agents = Agent.all.where(admin: false )
+    all_agents = Agent.all.where(admin: false)
     all_agents.each do |agent|
       y_values << Analysis.where(agents_id: agent.id).where.not(correct_label: nil).count
     end
@@ -67,9 +67,12 @@ class AdminController < ApplicationController
     bucket_name = 'amazonrails'
     bucket = s3.bucket(bucket_name)
     image_count = bucket.objects.count { |object| object.key.downcase.end_with?('.jpg', '.jpeg', '.png', '.gif') }
-
+    number_of_non_labeled = Analysis.where(correct_label: nil).count
     number_of_incorrect_labels = Analysis.where(correct_label: false).count
-    accuracy_percentage = 100 - ((number_of_incorrect_labels.to_f/image_count)*100)
-    return accuracy_percentage
+    number_of_correct_labels = Analysis.where(correct_label: true).count
+    x = image_count - Analysis.all.count
+    y = number_of_incorrect_labels + number_of_correct_labels
+    accuracy = ((x + number_of_correct_labels.to_f)/(x + y)) * 100
+    return accuracy
   end
 end

@@ -1,0 +1,11 @@
+<div class="d-flex flex-column align-items-center justify-content-center">
+  <%= image_tag(@image, :class => "image border border-4 ms-1 mt-5 border border-dark") %>
+  <p><b>Is this image labeled correctly?</b></p>
+  <p><b>Label: <%= @label %></b></p>
+  <div class="d-flex p-2">
+    <%= button_to "YES", label_correct_path(@image.id), :class => "btn btn-dark", method: :patch %>
+    <%= button_to "NO", label_incorrect_path(@image.id), :class => "btn btn-dark", method: :patch %>
+  </div>
+</div>
+
+

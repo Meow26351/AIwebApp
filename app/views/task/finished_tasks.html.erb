@@ -1,13 +1,23 @@
 <h1 class="font-monospace text-center"><strong>Here are your finished tasks </strong></h1>
 
+<div class="d-flex flex-wrap">
+  <% @current_agent_tasks.each do |task| %>
+    <div class="col-md-4 p-3">
+      <% image = task[:image] %>
+      <%= image_tag url_for(image), class: "image border border-4 ms-1 border border-dark" %>
+      <div class="ms-1">
+        <div class="text-box border border-2 rounded d-flex justify-content-center align-items-center">
+          <p class="text-center"><b>Label: <%= task[:label] %></b></p>
+        </div>
+        <div class="text-box border border-2 rounded d-flex justify-content-center align-items-center">
+          <p class="text-center"><b>Given Answer: <%= task[:answer] %></b></p>
+        </div>
+        <div>
+          <%= button_to "Edit answer", edit_task_path(image.id), :class => "btn btn-dark", method: :patch%>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-<% @current_agent_tasks.each do |task| %>
-  <% image = task[:image] %>
-  <%= image_tag url_for(image), class: "image border border-4 ms-1" %>
-  <br/>
-  <div class="ms-1">
-    <p>Image label<br/></p>
-    <p>Label: <%= task[:label] %></p>
-    <p>Given Answer: <%= task[:answer] %></p>
-  </div>
-<% end %>
+
